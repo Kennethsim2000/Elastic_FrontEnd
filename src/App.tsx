@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TextField from "@mui/material/TextField";
+import "./styles/tailwind.css";
+import Button from "@mui/material/Button";
+import { useState } from "react";
 
 function App() {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.currentTarget.value);
+  };
+
+  const handleClick = () => {
+    console.log(inputValue);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex items-start justify-center w-full h-screen pt-16">
+      <div className="w-4/5 max-w-md">
+        <TextField
+          id="standard-multiline-flexible"
+          label="Enter your search here"
+          variant="standard"
+          fullWidth
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+        <Button onClick={handleClick} variant="outlined">
+          Search
+        </Button>
+      </div>
     </div>
   );
 }
